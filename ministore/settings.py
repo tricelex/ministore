@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "playground",
     "store",
     "tags",
+    "likes",
     "debug_toolbar",
 ]
 
@@ -81,7 +82,7 @@ WSGI_APPLICATION = "ministore.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "mimistore",
+        "NAME": "ministore",
         "USER": "postgres",
         "PASSWORD": "password",
         "HOST": "localhost",

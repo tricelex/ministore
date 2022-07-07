@@ -6,5 +6,16 @@
     {% else %}
     <h1>Hello Chuckz!</h1>
     {% endif %}
+
+    <ul>
+      {% for product in products %}
+      <li>
+        {{product.id}} {{product.customer.first_name}}
+        {{product.customer.last_name}}
+      </li>
+      {% endfor %}
+    </ul>
+
+    {{products}}
   </body>
 </html>
