@@ -8,8 +8,7 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
@@ -35,7 +34,12 @@ class Migration(migrations.Migration):
                 ('email', models.EmailField(max_length=254, unique=True)),
                 ('phone', models.CharField(max_length=255)),
                 ('birth_date', models.DateField(null=True)),
-                ('membership', models.CharField(choices=[('B', 'Bronze'), ('S', 'Silver'), ('G', 'Gold')], default='B', max_length=1)),
+                (
+                    'membership',
+                    models.CharField(
+                        choices=[('B', 'Bronze'), ('S', 'Silver'), ('G', 'Gold')], default='B', max_length=1
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
@@ -43,7 +47,12 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('placed_at', models.DateTimeField(auto_now_add=True)),
-                ('payment_status', models.CharField(choices=[('P', 'Pending'), ('C', 'Complete'), ('F', 'Failed')], default='P', max_length=1)),
+                (
+                    'payment_status',
+                    models.CharField(
+                        choices=[('P', 'Pending'), ('C', 'Complete'), ('F', 'Failed')], default='P', max_length=1
+                    ),
+                ),
                 ('customer', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='store.customer')),
             ],
         ),
@@ -81,7 +90,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='collection',
             name='featured_product',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='store.product'),
+            field=models.ForeignKey(
+                null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='store.product'
+            ),
         ),
         migrations.CreateModel(
             name='CartItem',
