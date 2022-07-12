@@ -1,8 +1,9 @@
 from django.contrib import admin
+from django.contrib.contenttypes.admin import GenericTabularInline
+
 from store.admin import ProductAdmin
 from store.models import Product
 from tags.models import TaggedItem
-from django.contrib.contenttypes.admin import GenericTabularInline
 
 
 class TagInline(GenericTabularInline):
