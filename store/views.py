@@ -1,22 +1,30 @@
+from typing import List
 from django.db.models.aggregates import Count
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.mixins import (
+    CreateModelMixin,
+    RetrieveModelMixin,
+    DestroyModelMixin,
+)
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin
+from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
+from store import serializers
 from store.filters import ProductFilter
 from store.pagination import DefaultPagination
 
-from .models import Cart, Collection, OrderItem, Product, Review
+from .models import Cart, CartItem, Collection, OrderItem, Product, Review
 from .serializers import (
+    AddCartItemSerializer,
+    CartItemSerializer,
     CartSerializer,
     CollectionSerializer,
     ProductSerializer,
     ReviewSerializer,
+    UpdateCartItemSerializer,
 )
-from store import serializers
 
 
 class ProductViewSet(ModelViewSet):
@@ -69,6 +77,31 @@ class ReviewViewSet(ModelViewSet):
         return super().destroy(request, *args, **kwargs)
 
 
-class CartViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
+class CartViewSet(
+    CreateModelMixin, DestroyModelMixin, RetrieveModelMixin, GenericViewSet
+):
     queryset = Cart.objects.prefetch_related("items__product").all()
     serializer_class = CartSerializer
+
+    def destroy(self, request, *args, **kwargs):
+        return super().destroy(request, *args, **kwargs)
+
+
+class CartItemViewSet(ModelViewSet):
+    http_method_names: List[str] = ["get", "post", "patch", "delete"]
+
+    def get_serializer_class(self):
+        if self.request.method == "POST":
+            return AddCartItemSerializer
+        elif self.request.method == "PATCH":
+            return UpdateCartItemSerializer
+        return CartItemSerializer
+
+    def get_queryset(self):
+        return CartItem.objects.filter(cart_id=self.kwargs["cart_pk"])
+
+    def get_serializer_context(self):
+        return {"cart_id": self.kwargs["cart_pk"]}
+
+    def destroy(self, request, *args, **kwargs):
+        return super().destroy(request, *args, **kwargs)
