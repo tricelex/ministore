@@ -1,12 +1,13 @@
 from typing import List
+
 from django.db.models.aggregates import Count
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.mixins import (
     CreateModelMixin,
-    RetrieveModelMixin,
     DestroyModelMixin,
+    RetrieveModelMixin,
 )
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ModelViewSet

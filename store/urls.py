@@ -1,13 +1,14 @@
 from cgitb import lookup
+
 from django.urls import include, path
 from rest_framework_nested import routers
 
 from .views import (
+    CartItemViewSet,
     CartViewSet,
     CollectionViewSet,
     ProductViewSet,
     ReviewViewSet,
-    CartItemViewSet,
 )
 
 router = routers.DefaultRouter()

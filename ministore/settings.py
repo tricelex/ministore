@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "playground",
     "store",
-    "store_custom",
+    "core",
     "tags",
     "likes",
     "debug_toolbar",
@@ -142,3 +142,5 @@ REST_FRAMEWORK = {
     "COERCE_DECIMAL_TO_STRING": False,
     "PAGE_SIZE": 10,
 }
+
+AUTH_USER_MODEL = "core.User"
