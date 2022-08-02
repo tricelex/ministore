@@ -4,10 +4,12 @@ from django.db.models.aggregates import Count
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.decorators import action
 from rest_framework.mixins import (
     CreateModelMixin,
     DestroyModelMixin,
     RetrieveModelMixin,
+    UpdateModelMixin,
 )
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
@@ -16,12 +18,13 @@ from store import serializers
 from store.filters import ProductFilter
 from store.pagination import DefaultPagination
 
-from .models import Cart, CartItem, Collection, OrderItem, Product, Review
+from .models import Cart, CartItem, Collection, Customer, OrderItem, Product, Review
 from .serializers import (
     AddCartItemSerializer,
     CartItemSerializer,
     CartSerializer,
     CollectionSerializer,
+    CustomerSerializer,
     ProductSerializer,
     ReviewSerializer,
     UpdateCartItemSerializer,
@@ -106,3 +109,20 @@ class CartItemViewSet(ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         return super().destroy(request, *args, **kwargs)
+
+
+class CustomerViewSet(
+    CreateModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    GenericViewSet,
+):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+
+    @action(detail=False)
+    def me(self, request):
+        customer = Customer.objects.get(user_id=request.user.id)
+        print(customer)
+        serializer = CustomerSerializer(customer)
+        return Response(serializer.data)

@@ -1,11 +1,12 @@
 from django.contrib import admin
-from django.contrib.contenttypes.admin import GenericTabularInline
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User
+from django.contrib.contenttypes.admin import GenericTabularInline
 
 from store.admin import ProductAdmin
 from store.models import Product
 from tags.models import TaggedItem
+
+from .models import User
 
 admin.site.register(User)
 
