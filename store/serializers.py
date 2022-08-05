@@ -1,3 +1,4 @@
+import re
 from dataclasses import field
 from decimal import Decimal
 from xml.parsers.expat import model
@@ -114,7 +115,7 @@ class UpdateCartItemSerializer(serializers.ModelSerializer):
 
 
 class CustomerSerializer(serializers.ModelSerializer):
-    user_id = serializers.IntegerField()
+    user_id = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Customer

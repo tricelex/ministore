@@ -1,3 +1,17 @@
+POST http://127.0.0.1:8000/auth/jwt/create/ HTTP/1.1
+content-type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+# {
+#   "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY1OTc2MjExNSwianRpIjoiZjg4YjIzYWU0NDQ4NGUxZGJlZGZlMjdiZTQ5NzlhNjMiLCJ1c2VyX2lkIjoxfQ.YRTfVncv1b096sirVY-_ghm0zd3aSVa4UCR39PpOfxE",
+#   "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5NzYyMTE1LCJqdGkiOiJmODY4NmM5Mzc1NzM0Y2Q2OTllMjRkNTc5M2NmNDU0OSIsInVzZXJfaWQiOjF9.VOeg6sdV-dZySkQ8rcs3tF9rkUgMEZbpbwa8GSZQUjE"
+# }
+
+###
 GET http://127.0.0.1:8000/auth/users/me/ HTTP/1.1
 Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5NTYwNTA5LCJqdGkiOiIzZTgwN2NlYjhmNmQ0ODc3YWI5MzRlZDcyYzRiZGQ2OSIsInVzZXJfaWQiOjF9.bw_QXaqUVzYGHowcqtT_awDLe2XSQKb93oxeoLk_FoQ
 content: application/json
@@ -5,12 +19,18 @@ content: application/json
 
 ###
 GET http://127.0.0.1:8000/store/customers/me/ HTTP/1.1
-Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5NTYwNTA5LCJqdGkiOiIzZTgwN2NlYjhmNmQ0ODc3YWI5MzRlZDcyYzRiZGQ2OSIsInVzZXJfaWQiOjF9.bw_QXaqUVzYGHowcqtT_awDLe2XSQKb93oxeoLk_FoQ
+Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5NzYyMTE1LCJqdGkiOiJmODY4NmM5Mzc1NzM0Y2Q2OTllMjRkNTc5M2NmNDU0OSIsInVzZXJfaWQiOjF9.VOeg6sdV-dZySkQ8rcs3tF9rkUgMEZbpbwa8GSZQUjE
+
+###
+GET http://127.0.0.1:8000/store/customers/ HTTP/1.1
+Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5NzYyMTE1LCJqdGkiOiJmODY4NmM5Mzc1NzM0Y2Q2OTllMjRkNTc5M2NmNDU0OSIsInVzZXJfaWQiOjF9.VOeg6sdV-dZySkQ8rcs3tF9rkUgMEZbpbwa8GSZQUjE
 
 
-# {
-#     "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY1OTU1OTc2MiwianRpIjoiMTJkZDk4NTc0OTMzNDg1NDg0NTA5ZTVmMjI3MDcyM2EiLCJ1c2VyX2lkIjoxfQ.ndNmLTR4CpoPkr3CrnBxf8-oOrfYE41QYatATSBoVFE",
-#     "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5NTU5NzYyLCJqdGkiOiJiZGMyMjU5MjdiMjE0ZGQ5YjRhNzgyNjlhOTFlNGNiZCIsInVzZXJfaWQiOjF9.n53KwfdeBPgZ0ZXaDUznoc6ZhTzcK3EoLIDPzUQKsKg"
-# }
+###
+PUT http://127.0.0.1:8000/store/customers/me/ HTTP/1.1
+content-type: application/json
+Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5NzYyMTE1LCJqdGkiOiJmODY4NmM5Mzc1NzM0Y2Q2OTllMjRkNTc5M2NmNDU0OSIsInVzZXJfaWQiOjF9.VOeg6sdV-dZySkQ8rcs3tF9rkUgMEZbpbwa8GSZQUjE
 
-# eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5NTYwNTA5LCJqdGkiOiIzZTgwN2NlYjhmNmQ0ODc3YWI5MzRlZDcyYzRiZGQ2OSIsInVzZXJfaWQiOjF9.bw_QXaqUVzYGHowcqtT_awDLe2XSQKb93oxeoLk_FoQ
+{
+  "phone": "123456789"
+}
