@@ -10,7 +10,7 @@ from rest_framework.mixins import (
     DestroyModelMixin,
     RetrieveModelMixin,
 )
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
@@ -18,7 +18,7 @@ from store.filters import ProductFilter
 from store.pagination import DefaultPagination
 
 from .models import Cart, CartItem, Collection, Customer, OrderItem, Product, Review
-from .permissions import IsAdminOrReadOnly
+from .permissions import ViewCustomerHistoryPermissions, IsAdminOrReadOnly
 from .serializers import (
     AddCartItemSerializer,
     CartItemSerializer,
@@ -83,7 +83,9 @@ class ReviewViewSet(ModelViewSet):
         return super().destroy(request, *args, **kwargs)
 
 
-class CartViewSet(CreateModelMixin, DestroyModelMixin, RetrieveModelMixin, GenericViewSet):
+class CartViewSet(
+    CreateModelMixin, DestroyModelMixin, RetrieveModelMixin, GenericViewSet
+):
     queryset = Cart.objects.prefetch_related("items__product").all()
     serializer_class = CartSerializer
 
@@ -129,3 +131,10 @@ class CustomerViewSet(
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(serializer.data)
+
+    @action(
+        detail=True,
+        permission_classes=[ViewCustomerHistoryPermissions],
+    )
+    def history(self, request, pk):
+        return Response("OK")
