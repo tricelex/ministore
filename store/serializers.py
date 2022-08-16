@@ -5,7 +5,16 @@ from xml.parsers.expat import model
 
 from rest_framework import serializers
 
-from store.models import Cart, CartItem, Collection, Customer, Product, Review
+from store.models import (
+    Cart,
+    CartItem,
+    Collection,
+    Customer,
+    OrderItem,
+    Product,
+    Review,
+    Order,
+)
 
 
 class CollectionSerializer(serializers.ModelSerializer):
@@ -100,7 +109,9 @@ class AddCartItemSerializer(serializers.ModelSerializer):
             cart_item.quantity += quantity
             self.instance = cart_item
         except CartItem.DoesNotExist:
-            self.instance = CartItem.objects.create(cart_id=cart_id, **self.validated_data)
+            self.instance = CartItem.objects.create(
+                cart_id=cart_id, **self.validated_data
+            )
         return self.instance
 
     class Meta:
@@ -120,3 +131,19 @@ class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = ["id", "user_id", "phone", "birth_date", "membership"]
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    product = SimpleProductSerializer()
+
+    class Meta:
+        model = OrderItem
+        fields = ["id", "product", "unit_price", "quantity"]
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Order
+        fields = ["id", "customer", "placed_at", "payment_status", "items"]

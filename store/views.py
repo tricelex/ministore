@@ -17,7 +17,16 @@ from rest_framework.viewsets import GenericViewSet, ModelViewSet
 from store.filters import ProductFilter
 from store.pagination import DefaultPagination
 
-from .models import Cart, CartItem, Collection, Customer, OrderItem, Product, Review
+from .models import (
+    Cart,
+    CartItem,
+    Collection,
+    Customer,
+    OrderItem,
+    Product,
+    Review,
+    Order,
+)
 from .permissions import ViewCustomerHistoryPermissions, IsAdminOrReadOnly
 from .serializers import (
     AddCartItemSerializer,
@@ -25,6 +34,7 @@ from .serializers import (
     CartSerializer,
     CollectionSerializer,
     CustomerSerializer,
+    OrderSerializer,
     ProductSerializer,
     ReviewSerializer,
     UpdateCartItemSerializer,
@@ -118,7 +128,7 @@ class CustomerViewSet(
 ):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
-    permission_classes = [IsAdminUser]
+    # permission_classes = [IsAdminUser]
 
     @action(detail=False, methods=["get", "put"], permission_classes=[IsAuthenticated])
     def me(self, request):
@@ -138,3 +148,8 @@ class CustomerViewSet(
     )
     def history(self, request, pk):
         return Response("OK")
+
+
+class OrderViewSet(ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
