@@ -7,8 +7,8 @@ content-type: application/json
 }
 
 # {
-#   "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY1OTkzMDEyNywianRpIjoiNjMyOTcxNTgxYTZjNDdhNWIyNmE2MDY0YmE4ZjNkOWYiLCJ1c2VyX2lkIjoxfQ.pY5O2wZrmm36rryd1pJw8BOjG3tRwejdnmNsJA97hw0",
-#   "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5OTMwMTI3LCJqdGkiOiIyNjJhNDgyZDJjNWE0NjRjYmFlNTUzNWQ3ODdkNzU5NiIsInVzZXJfaWQiOjF9.cyS12C-L8UBsDK3ZSqmLAxBSlKWu19_DfBPHl8YdaWg"
+#   "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2MTMxNjA2OCwianRpIjoiNTFjYmM2NTgxZDEzNDg2YTgwMjc2ZmEzZjM4MWEzYzAiLCJ1c2VyX2lkIjoxfQ.uk_iOfJemeXsP1Q8rykNJkFI8NqSJ5hW5pYqE63v7BY",
+#   "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYxMzE2MDY4LCJqdGkiOiIwMmUwZjVlMDRkNTE0MzQ3OTFlMjcyMjk3NjVhYmI3NSIsInVzZXJfaWQiOjF9.b2GXWvszbl_-g1yw837yEWUsxvBrs76r1D6dmX56Omk"
 # }
 
 ###
