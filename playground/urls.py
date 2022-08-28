@@ -1,5 +1,6 @@
 from django.urls import path
 
-from .views import sayHello
+from . import views
 
-urlpatterns = [path("hello/", sayHello, name="sayHello")]
+# URLConf
+urlpatterns = [path('hello/', views.say_hello)]
